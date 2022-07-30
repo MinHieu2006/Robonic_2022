@@ -230,7 +230,6 @@ void move_back_right(int x){  // dong co phai di lui
  if(error == 1) //skip loop if no controller found
   return; 
   
- else { //DualShock Controller
   
     ps2x.read_gamepad(false, vibrate); // disable vibration of the controller   
     int nJoy_left_Y = ps2x.Analog(PSS_LY); // read y-postion left stick
@@ -251,6 +250,23 @@ void move_back_right(int x){  // dong co phai di lui
         move_dc_right(255);
      }  
      
+
+     if(ps2x.ButtonPressed(PSB_L1))
+  {
+    toggle_motor_bong();
+  }
+  if(ps2x.ButtonPressed(PSB_L2))
+  {
+    dao_chieu_motor_bong();
+  }
+  if(ps2x.ButtonPressed(PSB_CROSS)){
+       Serial.println("X just changed");  
+       turn_off_servo();
+  }
+  
+  if(ps2x.ButtonPressed(PSB_TRIANGLE)){
+       Serial.println("Triangle just changed");  
+       turn_on_servo();
+  }  
    delay(50);
- }    
 }
